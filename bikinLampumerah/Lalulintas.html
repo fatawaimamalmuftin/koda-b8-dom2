@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lampu Lalu Lintas</title>
+
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .Lampu-laluLintas {
+            width: 120px;
+            background-color: black;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px auto;
+        }
+
+        .lamp {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background-color: gray;
+            margin: 10px auto;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .green {
+            background-color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Lampu Lalu Lintas</h1>
+
+    <div class="Lampu-laluLintas">
+        <div id="merah" class="lamp"></div>
+        <div id="kuning" class="lamp"></div>
+        <div id="hijau" class="lamp"></div>
+    </div>
+
+
+    <script>
+        const merah = document.querySelector("#merah");
+        const kuning = document.querySelector("#kuning");
+        const hijau = document.querySelector("#hijau");
+
+        function matikanSemuaLampu() {
+            merah.className = "lamp";
+            kuning.className = "lamp";
+            hijau.className = "lamp";
+        }
+
+        function jalanLampu() {
+
+            matikanSemuaLampu();
+            merah.classList.add("red");
+
+            setTimeout(() => {
+
+                matikanSemuaLampu();
+                kuning.classList.add("yellow");
+
+                setTimeout(() => {
+
+                    matikanSemuaLampu();
+                    hijau.classList.add("green");
+
+                    setTimeout(() => {
+
+                        jalanLampu();
+
+                    }, 3000);
+
+                }, 2000);
+
+            }, 3000);
+        }
+
+        jalanLampu();
+    </script>
+
+</body>
+
+</html>
