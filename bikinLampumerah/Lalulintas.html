@@ -4,40 +4,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lampu Lalu Lintas</title>
+    <title>Lampu Lalu Lintas - Clean Code</title>
 
     <style>
         body {
             text-align: center;
             font-family: Arial, sans-serif;
+            background-color: aliceblue;
+            margin: 0;
+            padding: 20px;
         }
 
-        .Lampu-laluLintas {
+        .lampu-lalu-lintas {
             width: 120px;
             background-color: black;
             padding: 15px;
             border-radius: 10px;
             margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
 
         .lamp {
             width: 80px;
             height: 80px;
             border-radius: 50%;
-            background-color: gray;
+            background-color: #333;
             margin: 10px auto;
+            transition: background-color 0.2s ease;
         }
 
-        .red {
+        .lamp.red {
             background-color: red;
+            box-shadow: 0 0 15px red;
         }
 
-        .yellow {
+        .lamp.yellow {
             background-color: yellow;
+            box-shadow: 0 0 15px yellow;
         }
 
-        .green {
+        .lamp.green {
             background-color: green;
+            box-shadow: 0 0 15px green;
         }
     </style>
 </head>
@@ -46,12 +54,11 @@
 
     <h1>Lampu Lalu Lintas</h1>
 
-    <div class="Lampu-laluLintas">
-        <div id="merah" class="lamp"></div>
-        <div id="kuning" class="lamp"></div>
-        <div id="hijau" class="lamp"></div>
-    </div>
-
+    <main class="lampu-lalu-lintas" aria-live="polite">
+        <div id="merah" class="lamp" aria-label="Lampu Merah"></div>
+        <div id="kuning" class="lamp" aria-label="Lampu Kuning"></div>
+        <div id="hijau" class="lamp" aria-label="Lampu Hijau"></div>
+    </main>
 
     <script>
         const merah = document.querySelector("#merah");
@@ -59,18 +66,16 @@
         const hijau = document.querySelector("#hijau");
 
         function matikanSemuaLampu() {
-            merah.className = "lamp";
-            kuning.className = "lamp";
-            hijau.className = "lamp";
+            merah.classList.remove("red");
+            kuning.classList.remove("yellow");
+            hijau.classList.remove("green");
         }
 
         function jalanLampu() {
-
             matikanSemuaLampu();
             merah.classList.add("red");
 
             setTimeout(() => {
-
                 matikanSemuaLampu();
                 kuning.classList.add("yellow");
 
@@ -80,7 +85,6 @@
                     hijau.classList.add("green");
 
                     setTimeout(() => {
-
                         jalanLampu();
 
                     }, 3000);
